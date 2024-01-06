@@ -17,10 +17,10 @@ class Core:
 
     def run(self):
         right, middle, left = self.sensor.feed()
-        if right:
+        if left:
             self.driver.move(70, 'no', 'left', 0.8)
             self.rot = 'left'
-        if left:
+        if right:
             self.driver.move(70, 'no', 'right', 0.8)
             self.rot = 'right'
         if middle:
