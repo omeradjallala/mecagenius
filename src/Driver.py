@@ -2,7 +2,6 @@
 
 import time
 import RPi.GPIO as GPIO
-from draft.server.move import motor_left
 
 Dir_forward     = 0
 Dir_backward    = 1
@@ -64,33 +63,31 @@ class Driver:
     def motorRight(self, status, direction, speed):
         if status == 0:
             self.right_engine.stop()
-        else:
-            if direction == Dir_forward:
-                GPIO.output(self.right_engine.pin1, GPIO.HIGH)
-                GPIO.output(self.right_engine.pin2, GPIO.LOW)
-                self.right_engine.PMW.start(100)
-                self.right_engine.PMW.ChangeDutyCycle(speed)
-            elif direction == Dir_backward:
-                GPIO.output(self.right_engine.pin1, GPIO.LOW)
-                GPIO.output(self.right_engine.pin2, GPIO.HIGH)
-                self.right_engine.PMW.start(0)
-                self.right_engine.PMW.ChangeDutyCycle(speed)
+        elif direction == Dir_forward:
+            GPIO.output(self.right_engine.pin1, GPIO.HIGH)
+            GPIO.output(self.right_engine.pin2, GPIO.LOW)
+            self.right_engine.PMW.start(100)
+            self.right_engine.PMW.ChangeDutyCycle(speed)
+        elif direction == Dir_backward:
+            GPIO.output(self.right_engine.pin1, GPIO.LOW)
+            GPIO.output(self.right_engine.pin2, GPIO.HIGH)
+            self.right_engine.PMW.start(0)
+            self.right_engine.PMW.ChangeDutyCycle(speed)
         return direction
 
     def motorLeft(self, status, direction, speed):
         if status == 0:
             self.left_engine.stop()
-        else:
-            if direction == Dir_backward:
-                GPIO.output(self.left_engine.pin1, GPIO.HIGH)
-                GPIO.output(self.left_engine.pin2, GPIO.LOW)
-                self.left_engine.PMW.start(100)
-                self.left_engine.PMW.ChangeDutyCycle(speed)
-            elif direction == Dir_forward:
-                GPIO.output(self.left_engine.pin1, GPIO.LOW)
-                GPIO.output(self.left_engine.pin2, GPIO.HIGH)
-                self.left_engine.PMW.start(0)
-                self.left_engine.PMW.ChangeDutyCycle(speed)
+        elif direction == Dir_backward:
+            GPIO.output(self.left_engine.pin1, GPIO.HIGH)
+            GPIO.output(self.left_engine.pin2, GPIO.LOW)
+            self.left_engine.PMW.start(100)
+            self.left_engine.PMW.ChangeDutyCycle(speed)
+        elif direction == Dir_forward:
+            GPIO.output(self.left_engine.pin1, GPIO.LOW)
+            GPIO.output(self.left_engine.pin2, GPIO.HIGH)
+            self.left_engine.PMW.start(0)
+            self.left_engine.PMW.ChangeDutyCycle(speed)
         return direction
 
     def move(self, speed, direction, turn, radius=0.6):
@@ -100,26 +97,34 @@ class Driver:
                     self.motorLeft(0, left_forward, int(speed*radius))
                     self.motorRight(1, right_backward, speed)
                 elif turn == 'left':
-                    self.motorLeft(1, left_forward, speed)
-                    self.motorRight(1, right_backward, int(speed*radius))
+                    self.motorLeft(1, left_backward, speed)
+                    self.motorRight(0, right_forward, int(speed*radius))
                 else:
-                    pass
+                    self.motorLeft(1, left_backward, speed)
+                    self.motorRight(1, right_backward, speed)
+
             case 'backward':
                 if turn == 'right':
-                    pass
+                    self.motorLeft(0, left_backward, int(speed*radius))
+                    self.motorRight(1, right_forward, speed)
                 elif turn == 'left':
-                    pass
+                    self.motorLeft(1, left_forward, speed)
+                    self.motorRight(0, right_backward, int(speed*radius))
                 else:
-                    pass
+                    self.motorLeft(1, left_forward, speed)
+                    self.motorRight(1, right_forward, speed)
+
             case 'no':
                 if turn == 'right':
-                    pass
+                    self.motorLeft(1, left_backward, speed)
+                    self.motorRight(1, right_forward, speed)
                 elif turn == 'left':
-                    pass
+                    self.motorLeft(1, left_forward, speed)
+                    self.motorRight(1, right_backward, speed)
                 else:
-                    pass
-            case _:
-                pass
+                    self.motorStop()
+
+            case _: pass
 
     def destroy(self):
         self.shutdown()
