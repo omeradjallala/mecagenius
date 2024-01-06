@@ -24,9 +24,9 @@ class Core:
         elif right:
             self.driver.move(70, 'no', 'right', 0.8)
             self.rot = 'right'
-        elif middle:
+        if middle:
             self.driver.move(20, 'forward', self.rot, 0.8)
         else:
             self.driver.move(20, 'no', self.rot, 0.8)
             # self.driver.move(50, 'backward', 'no', 0.8)
-        print(right, middle, left, self.rot)
+        # print(right, middle, left, self.rot)

@@ -5,7 +5,7 @@ from src.Core import Core
 if __name__ == '__main__':
     try:
         mecagenius = Core()
-        while 1:
+        while True:
             mecagenius.run()
     except KeyboardInterrupt:
         mecagenius.releas()
