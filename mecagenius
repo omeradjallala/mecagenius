@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 
-from Core import Core
-
+from src.Core import Core
 
 if __name__ == '__main__':
     try:
         mecagenius = Core()
-        
         while 1:
             mecagenius.run()
     except KeyboardInterrupt:
