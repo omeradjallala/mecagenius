@@ -2,6 +2,7 @@
 
 from src.Driver import Driver
 from src.Sensor import Sensor
+from time import sleep, time
 
 class Core:
     def __init__(self) -> None:
@@ -17,16 +18,11 @@ class Core:
 
     def run(self):
         right, middle, left = self.sensor.feed()
-
-        if left:
-            self.driver.move(70, 'no', 'left', 0.8)
-            self.rot = 'left'
-        elif right:
-            self.driver.move(70, 'no', 'right', 0.8)
-            self.rot = 'right'
-        if middle:
-            self.driver.move(20, 'forward', self.rot, 0.8)
-        else:
-            self.driver.move(20, 'no', self.rot, 0.8)
-            # self.driver.move(50, 'backward', 'no', 0.8)
-        # print(right, middle, left, self.rot)
+        while right:
+            self.driver.move(50,  'no', 'right', 0.8)
+            sleep(0.3)
+        while left:
+            self.driver.move(50,  'no', 'left', 0.8)
+            sleep(0.3)
+        self.driver.move(80, 'forward', 'no')
+        print(right, middle, left, self.rot)
