@@ -19,21 +19,18 @@ class Core:
     def run(self):
         right, middle, left = self.sensor.feed()
 
+        sleep(0.2)
         if right == middle == left == 1:
             return self.driver.move(50, 'forward', 'no', 0.0)
         if right == 1:
-            self.driver.shutdown()
             self.driver.move(30, 'forward', 'right', 0.8)
-            sleep(0.2)
-            # if middle == 0:
-            #     self.driver.move(30, 'no', 'right', 0.3)
+            if middle == 0:
+                self.driver.move(30, 'no', 'right', 0.3)
             return
         if left == 1:
-            self.driver.shutdown()
             self.driver.move(30, 'forward', 'left', 0.8)
-            sleep(0.2)
-            # if middle == 0:
-            #     self.driver.move(30, 'no', 'left', 0.3)
+            if middle == 0:
+                self.driver.move(30, 'no', 'left', 0.3)
             return
         self.driver.move(40, 'forward', 'no', 0.0)
         print(right, middle, left)
