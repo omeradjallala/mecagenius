@@ -27,7 +27,7 @@ class Core:
             self.driver.move(70, 'no', 'right', 0.8)
             self.rot = 'right'
         elif middle:
-            self.driver.move(20, 'forward', 'no', 0.8)
+            self.driver.move(20, 'forward', self.rot, 0.8)
         if right == 0 and middle == 0 and left == 0:
             self.driver.move(20, 'no', self.rot, 0.8)
             # self.driver.move(50, 'backward', 'no', 0.8)
