@@ -23,9 +23,9 @@ class Engine:
         self.pwm = 0
 
     def start(self):
-        GPIO.output(self.en, GPIO.OUT)
-        GPIO.output(self.pin1, GPIO.OUT)
-        GPIO.output(self.pin2, GPIO.OUT)
+        GPIO.setup(self.en, GPIO.OUT)
+        GPIO.setup(self.pin1, GPIO.OUT)
+        GPIO.setup(self.pin2, GPIO.OUT)
 
     def stop(self):
         GPIO.output(self.pin1, GPIO.LOW)
