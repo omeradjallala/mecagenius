@@ -17,9 +17,9 @@ class Core:
     def run(self):
         right, middle, left = self.sensor.feed()
         if right:
-            self.driver.move(50, 'no', 'right', 0.8)
-        if left:
             self.driver.move(50, 'no', 'left', 0.8)
+        if left:
+            self.driver.move(50, 'no', 'right', 0.8)
         if middle:
             self.driver.move(20, 'forward', 'no', 0.8)
         if right == 0 and middle == 0 and left == 0:
