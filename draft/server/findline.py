@@ -9,12 +9,12 @@ import time
 import move
 '''
 status     = 1          #Motor rotation
-forward    = 1          #Motor forward
+forward    =1          #Motor forward
 backward   = 0          #Motor backward
 
-left_spd   = num_import_int('E_M1:')         #Speed of the car
+left_spd= num_import_int('E_M1:')         #Speed of the car
 right_spd  = num_import_int('E_M2:')         #Speed of the car
-left       = num_import_int('E_T1:')         #Motor Left
+left    = num_import_int('E_T1:')         #Motor Left
 right      = num_import_int('E_T2:')         #Motor Right
 '''
 line_pin_right = 19
