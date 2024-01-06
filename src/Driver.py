@@ -91,8 +91,7 @@ class Driver:
         return direction
 
     def move(self, speed, direction, turn, radius=0.6):
-        match(direction):
-            case 'forward':
+            if direction == 'forward':
                 if turn == 'right':
                     self.motorLeft(0, left_forward, int(speed*radius))
                     self.motorRight(1, right_backward, speed)
@@ -103,7 +102,7 @@ class Driver:
                     self.motorLeft(1, left_backward, speed)
                     self.motorRight(1, right_backward, speed)
 
-            case 'backward':
+            if direction == 'backward':
                 if turn == 'right':
                     self.motorLeft(0, left_backward, int(speed*radius))
                     self.motorRight(1, right_forward, speed)
@@ -114,7 +113,7 @@ class Driver:
                     self.motorLeft(1, left_forward, speed)
                     self.motorRight(1, right_forward, speed)
 
-            case 'no':
+            if direction == 'no':
                 if turn == 'right':
                     self.motorLeft(1, left_backward, speed)
                     self.motorRight(1, right_forward, speed)
@@ -123,8 +122,6 @@ class Driver:
                     self.motorRight(1, right_backward, speed)
                 else:
                     self.motorStop()
-
-            case _: pass
 
     def destroy(self):
         self.shutdown()
