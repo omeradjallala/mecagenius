@@ -18,10 +18,14 @@ class Core:
         right, middle, left = self.sensor.feed()
         if right:
             self.driver.move(70, 'no', 'left', 0.8)
+            rot = 'left'
         if left:
             self.driver.move(70, 'no', 'right', 0.8)
+            rot = 'right'
         if middle:
             self.driver.move(20, 'forward', 'no', 0.8)
+            rot = 0
         if right == 0 and middle == 0 and left == 0:
-            self.driver.move(50, 'backward', 'no', 0.8)
-        print(right, middle, left)
+            self.driver.move(50, rot, 'no', 0.8)
+            # self.driver.move(50, 'backward', 'no', 0.8)
+        print(right, middle, left, rot)
