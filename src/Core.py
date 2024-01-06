@@ -15,7 +15,7 @@ class Core:
         self.driver.destroy()
 
     def run(self):
-        right, middle, left = Sensor.feed()
+        right, middle, left = self.sensor.feed()
         if right:
             self.driver.move(50, 'no', 'right', 0.8)
         if left:
