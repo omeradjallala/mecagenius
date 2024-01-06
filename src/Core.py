@@ -24,13 +24,13 @@ class Core:
         if right == 1:
             self.driver.move(30, 'forward', 'right')
             sleep(0.2)
-            if middle == 0:
-                self.driver.move(30, 'no', 'right', 0.3)
+            # if middle == 0:
+            #     self.driver.move(30, 'no', 'right', 0.3)
             return
         if left == 1:
             self.driver.move(30, 'forward', 'left')
             sleep(0.2)
-            if middle == 0:
-                self.driver.move(30, 'no', 'left', 0.3)
+            # if middle == 0:
+            #     self.driver.move(30, 'no', 'left', 0.3)
             return
-        self.driver.move(40, 'forward', 'no', 0.0)
+        self.driver.move(20, 'forward', 'no', 0.0)
