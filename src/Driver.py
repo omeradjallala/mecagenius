@@ -121,7 +121,7 @@ class Driver:
                     self.motorLeft(1, left_forward, speed)
                     self.motorRight(1, right_backward, speed)
                 else:
-                    self.motorStop()
+                    self.shutdown()
 
     def destroy(self):
         self.shutdown()
